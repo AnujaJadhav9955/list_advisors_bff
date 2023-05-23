@@ -1,17 +1,31 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLList } = graphql;
+const { GraphQLObjectType, GraphQLSchema, GraphQLInt, GraphQLList, GraphQLID, GraphQLString } = graphql;
 const { faker } = require("@faker-js/faker");
-const AdvisorType = require("./TypeDefs/AdvisorType");
+
+
+ const AdvisorType = new GraphQLObjectType({
+  name: "Advisor",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    jobTitle: { type: GraphQLString },
+    desciption: { type: GraphQLString },
+    badge: { type: GraphQLString },
+    image: { type: GraphQLString },
+    status: { type: GraphQLString },
+    review: { type: GraphQLInt },
+    languages: { type: new GraphQLList(GraphQLString) },
+  }),
+});
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
     Advisors: {
       type: new GraphQLList(AdvisorType),
-      args: { id: { type: GraphQLInt } },
-      resolve(parent, args) {
-        const advisorsArray = [];
-        for (let i = 0; i < 20; i++) {
+      resolve() {
+        let advisorsArray = [];
+        for (let i = 0; i < 12; i++) {
           let record = faker.helpers.uniqueArray(
             [
               {
@@ -21,13 +35,13 @@ const RootQuery = new GraphQLObjectType({
                 desciption: faker.person.bio(),
                 badge: faker.image.avatarGitHub(),
                 image: faker.image.avatar(),
-                status: faker.helpers.arrayElement(["online", "offline"]),
+                status: faker.helpers.arrayElement(["Online", "Offline"]),
                 review: faker.number.int({ min: 0, max: 5 }),
                 languages: faker.helpers.arrayElements([
-                  "german",
-                  "english",
-                  "french",
-                  "spanish",
+                  "German",
+                  "English",
+                  "French",
+                  "Spanish",
                 ]),
               },
             ],

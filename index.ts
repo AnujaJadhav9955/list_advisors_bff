@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 6969;
 const { graphqlHTTP } = require("express-graphql");
-const schema = require("./schemas/index");
+const schema = require("./schemas/index.ts");
 const cors = require("cors");
 
 app.use(cors());
@@ -17,3 +17,5 @@ app.use(
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });
+
+module.exports = app;

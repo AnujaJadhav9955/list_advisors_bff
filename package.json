@@ -1,25 +1,32 @@
 {
-  "name": "databases",
+  "name": "advisors",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest -o ./tests",
+    "start": "node index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.0.1",
+    "@types/jest": "^29.5.1",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "easygraphql-tester": "^6.0.1",
+    "express": "^4.18.2",
     "express-graphql": "^0.12.0",
     "fs": "0.0.1-security",
     "graphql": "^15.4.0",
+    "graphql-typescript": "^0.3.0",
+    "jest": "^29.5.0",
     "mysql2": "^2.2.1",
-    "nodemailer": "^6.4.16",
     "path": "^0.12.7",
     "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0"
+    "supertest": "^6.3.3",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
   }
 }
